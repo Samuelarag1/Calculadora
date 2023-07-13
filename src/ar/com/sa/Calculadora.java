@@ -7,15 +7,13 @@ import java.util.ArrayList;
  */
 public class Calculadora extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Calculadora
-     */
     public Calculadora() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /*VARIABLES*/
-    double numero1, numero2, suma = 0.0;
+    double numero1, total = 0.0;
     String operador = "";
     ArrayList<Double> numeros = new ArrayList<Double>();
 
@@ -23,16 +21,54 @@ public class Calculadora extends javax.swing.JFrame {
     public void Sumar() {
         for (int i = 0; i < numeros.size(); i++) {
             if (i == 0) {
-                suma += numeros.get(i);
+                total += numeros.get(i);
             }
             if (i != 0) {
-                suma += numeros.get(i);
+                total += numeros.get(i);
             }
         }
-        String valorSuma = Double.toString(suma);
+        String valorSuma = Double.toString(total);
         textoVisor.setText(valorSuma);
     }
 
+    public void Restar() {
+        for (int i = 0; i < numeros.size(); i++) {
+            if (i == 0) {
+                total += numeros.get(i);
+            }
+            if (i != 0) {
+                total -= numeros.get(i);
+            }
+        }
+        String valorResta = Double.toString(total);
+        textoVisor.setText(valorResta);
+    }
+
+    public void Multiplicar() {
+        for (int i = 0; i < numeros.size(); i++) {
+            if (i == 0) {
+                total += numeros.get(i);
+            }
+            if (i != 0) {
+                total *= numeros.get(i);
+            }
+        }
+        String valorMult = Double.toString(total);
+        textoVisor.setText(valorMult);
+    }
+
+    public void Dividir() {
+        for (int i = 0; i < numeros.size(); i++) {
+            if (i == 0) {
+                total += numeros.get(i);
+            }
+            if (i != 0) {
+                total /= numeros.get(i);
+            }
+        }
+        String valorDiv = Double.toString(total);
+        textoVisor.setText(valorDiv);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -77,15 +113,15 @@ public class Calculadora extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        fondo.setBackground(new java.awt.Color(0, 0, 153));
+        fondo.setBackground(new java.awt.Color(0, 0, 0));
 
-        visor.setBackground(new java.awt.Color(0, 0, 102));
+        visor.setBackground(new java.awt.Color(0, 0, 0));
 
-        textoVisor.setBackground(new java.awt.Color(0, 0, 0));
-        textoVisor.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        textoVisor.setBackground(new java.awt.Color(255, 255, 255));
+        textoVisor.setFont(new java.awt.Font("Heiti SC", 1, 36)); // NOI18N
         textoVisor.setForeground(new java.awt.Color(204, 204, 204));
         textoVisor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        textoVisor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
+        textoVisor.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
 
         javax.swing.GroupLayout visorLayout = new javax.swing.GroupLayout(visor);
         visor.setLayout(visorLayout);
@@ -104,10 +140,20 @@ public class Calculadora extends javax.swing.JFrame {
         e2.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         e2.setText("^2");
         e2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        e2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                e2ActionPerformed(evt);
+            }
+        });
 
         sqrt.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         sqrt.setText("√");
         sqrt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        sqrt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sqrtActionPerformed(evt);
+            }
+        });
 
         mmbtn.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         mmbtn.setText("+/-");
@@ -187,6 +233,7 @@ public class Calculadora extends javax.swing.JFrame {
 
         n1.setText("1");
         n1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        n1.setSize(new java.awt.Dimension(60, 60));
         n1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 n1ActionPerformed(evt);
@@ -209,6 +256,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnSum.setBackground(new java.awt.Color(204, 204, 204));
         btnSum.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         btnSum.setText("+");
         btnSum.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -218,11 +266,17 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnDiv.setBackground(new java.awt.Color(204, 204, 204));
         btnDiv.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         btnDiv.setText("÷");
         btnDiv.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDiv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDivActionPerformed(evt);
+            }
+        });
 
-        btnMult.setBackground(new java.awt.Color(102, 102, 102));
+        btnMult.setBackground(new java.awt.Color(204, 204, 204));
         btnMult.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         btnMult.setText("X");
         btnMult.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -232,9 +286,15 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnResta.setBackground(new java.awt.Color(204, 204, 204));
         btnResta.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         btnResta.setText("-");
         btnResta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnResta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestaActionPerformed(evt);
+            }
+        });
 
         n0.setText("0");
         n0.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -244,6 +304,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        equal.setBackground(new java.awt.Color(204, 204, 204));
         equal.setText("=");
         equal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         equal.addActionListener(new java.awt.event.ActionListener() {
@@ -322,7 +383,7 @@ public class Calculadora extends javax.swing.JFrame {
                 .addComponent(visor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(e2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(sqrt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -408,11 +469,16 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_n8ActionPerformed
 
     private void btnACActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnACActionPerformed
-        numeros.clear();
-        textoVisor.setText("");
-        if (numeros.isEmpty()) {
-            suma = 0.0;
+        if (numeros.size() > 1) {
+            numeros.clear();
+            textoVisor.setText("");
+            if (numeros.isEmpty()) {
+                total = 0.0;
+            }
+        } else {
+            textoVisor.setText("");
         }
+
     }//GEN-LAST:event_btnACActionPerformed
 
     private void n9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_n9ActionPerformed
@@ -446,8 +512,7 @@ public class Calculadora extends javax.swing.JFrame {
 
         numeros.add(numero1);
         textoVisor.setText("");
-//            operador = "Sumar";
-        System.out.println(numeros.size());
+        operador = "Sumar";
     }//GEN-LAST:event_btnSumActionPerformed
 
     private void equalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equalActionPerformed
@@ -455,8 +520,34 @@ public class Calculadora extends javax.swing.JFrame {
         numero1 = Double.parseDouble(text);
         textoVisor.setText("");
         numeros.add(numero1);
-        Sumar();
-        numeros.clear();
+        switch (operador) {
+           case "Sumar":
+                Sumar();
+                numeros.clear();
+                operador = "";
+                total = 0.0;
+                break;
+           case "Multiplicar":
+                Multiplicar();
+                numeros.clear();
+                operador = "";
+                total = 0.0;
+                break;
+           case "Restar":
+                Restar();
+                numeros.clear();
+                operador = "";
+                total = 0.0;
+                break;
+           case "Division":
+                Dividir();
+                numeros.clear();
+                operador = "";
+                total = 0.0;
+                break;
+        }
+
+
     }//GEN-LAST:event_equalActionPerformed
 
     private void npointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_npointActionPerformed
@@ -473,13 +564,50 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_porbtnActionPerformed
 
     private void btnMultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultActionPerformed
+        String text = textoVisor.getText();
+        numero1 = Double.parseDouble(text);
+
+        numeros.add(numero1);
+        textoVisor.setText("");
+        operador = "Multiplicar";
     }//GEN-LAST:event_btnMultActionPerformed
 
     private void btnRestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaActionPerformed
+        String text = textoVisor.getText();
+        numero1 = Double.parseDouble(text);
+
+        numeros.add(numero1);
+        textoVisor.setText("");
+        operador = "Restar";
     }//GEN-LAST:event_btnRestaActionPerformed
 
     private void e2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_e2ActionPerformed
+        String text = textoVisor.getText();
+        
+        numero1 = Double.parseDouble(text);
+        numero1 *= numero1;
+       String text2 = Double.toString(numero1);
+        textoVisor.setText(text2);
     }//GEN-LAST:event_e2ActionPerformed
+
+    private void btnDivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDivActionPerformed
+        String text = textoVisor.getText();
+        numero1 = Double.parseDouble(text);
+
+        numeros.add(numero1);
+        textoVisor.setText("");
+        operador = "Division";
+    }//GEN-LAST:event_btnDivActionPerformed
+
+    private void sqrtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sqrtActionPerformed
+        String text = textoVisor.getText();
+        numero1 = Double.parseDouble(text);
+        
+        Double raiz = Math.sqrt(numero1);
+        String valorRaiz = Double.toString(raiz);
+        
+        textoVisor.setText(valorRaiz);
+    }//GEN-LAST:event_sqrtActionPerformed
 
     /**
      * @param args the command line arguments

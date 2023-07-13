@@ -22,7 +22,7 @@ public class CalculosAux {
              if(i == 0){
                 suma = numeros.get(i);
         }if(i != 0){
-            suma += numeros.get(i);
+            suma -= numeros.get(i);
         }
     }
         System.out.println(suma);
